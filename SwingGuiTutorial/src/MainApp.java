@@ -1,4 +1,8 @@
+import java.awt.BorderLayout;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 public class MainApp {
@@ -22,6 +26,9 @@ public class MainApp {
 		frame.setTitle("My first Swing application");
 		frame.setSize(300, 300);
 		frame.setLocation(500, 500);
+		
+		frame.add(new JLabel("test"), BorderLayout.WEST);
+		frame.add(new JButton("OK"), BorderLayout.NORTH);
 		
 		frame.setVisible(true);
 	}
