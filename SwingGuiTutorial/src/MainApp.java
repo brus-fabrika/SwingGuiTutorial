@@ -6,7 +6,12 @@ public class MainApp {
 	static class GuiRunner implements Runnable {
 		@Override
 		public void run() {
-			createGui();
+			try {
+				createGui();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -14,15 +19,21 @@ public class MainApp {
 		SwingUtilities.invokeLater(new GuiRunner());
 	}
 	
-	public static void createGui() {
+	public static void createGui() throws InterruptedException {
 		JFrame frame = new JFrame();
 		
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		frame.setTitle("My first Swing application");
-		frame.setSize(300, 300);
-		frame.setLocation(500, 500);
+		frame.setSize(500, 500);
+		frame.setLocation(100, 100);
+		
+		Field f = new Field();
+		
+		frame.add(f);
 		
 		frame.setVisible(true);
+		
+		f.startMoving();
 	}
 }
