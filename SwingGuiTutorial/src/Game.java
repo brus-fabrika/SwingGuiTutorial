@@ -14,7 +14,7 @@ public class Game {
 		this.parent = panel;
 	}
 	
-	public void start() {
+	public void step() {
 		for(Ball b: theCircles) {
 			nextMove(b);
 		}

@@ -15,11 +15,14 @@ public class Field extends JPanel {
 	
 	public Field() {
 		super();
-		setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+		setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
 		
-		game.addBall(new Ball(100, 100, 20));
-		game.addBall(new Ball(200, 200, 20));
-		game.addBall(new Ball(200, 250, 50));
+//		game.addBall(new Ball(100, 100, 20));
+//		game.addBall(new Ball(200, 200, 20));
+		
+		Ball ball = new Ball(200, 250, 50);
+		
+		game.addBall(ball);
 		
 	}
 	
@@ -29,8 +32,8 @@ public class Field extends JPanel {
 		
 		Graphics2D g2d = (Graphics2D) g;
 		
-		for(Shape s: game.getBall()) {
-			g2d.draw(s);
+		for(Shape ball: game.getBall()) {
+			g2d.draw(ball);
 		}
 		
 		
@@ -43,9 +46,9 @@ public class Field extends JPanel {
 		timer.schedule(new TimerTask() {
 			@Override
 			public void run() {
-				game.start();
+				game.step();
 			}
-		}, 2000, 50);
+		}, 1000, 100);
 		
 	}
 }

@@ -47,19 +47,4 @@ public class Ball extends Ellipse2D.Double {
 		}
 		return false;
 	}
-
-//	@Override
-//	public double getX() {
-//		return super.getX();
-//	}
-//	
-//	@Override
-//	public double getY() {
-//		return super.getY();
-//	}
-
-//	public void nextMove() {
-//		moveTo(this.xPos+1, this.yPos = yPos+1);
-//		
-//	}
 }
