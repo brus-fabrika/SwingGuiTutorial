@@ -24,7 +24,7 @@ public class MainApp {
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		
-		frame.setTitle("My first Swing application");
+		frame.setTitle("Flying balls");
 		frame.setSize(500, 500);
 		frame.setLocation(100, 100);
 //		
