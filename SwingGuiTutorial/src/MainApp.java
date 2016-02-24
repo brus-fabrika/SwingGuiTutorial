@@ -24,7 +24,7 @@ public class MainApp {
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		frame.setTitle("Flying balls game");
+		frame.setTitle("Flying balls game option 2");
 		frame.setSize(500, 500);
 		frame.setLocation(100, 100);
 		
