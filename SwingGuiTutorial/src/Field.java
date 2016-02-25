@@ -17,10 +17,12 @@ public class Field extends JPanel {
 		super();
 		setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
 		
-//		game.addBall(new Ball(100, 100, 20));
-//		game.addBall(new Ball(200, 200, 20));
+		
+		game.addBall(new Ball(100, 100, 20));
+		game.addBall(new Ball(200, 200, 20));
 		
 		Ball ball = new Ball(200, 250, 50);
+	
 		
 		game.addBall(ball);
 		

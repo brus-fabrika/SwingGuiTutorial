@@ -21,7 +21,15 @@ public class Game {
 		
 		parent.repaint();
 	}
+	double radius;
+	public void setRadius(double r) {
+        radius = r;
+    }
 
+    public double getRadius() {
+        return radius;
+    }
+	
 	private void nextMove(Ball b) {
 		double bX = b.getX();
 		double bY = b.getY();
@@ -45,6 +53,14 @@ public class Game {
 			bX += 1.0;
 			bY += 1.0;
 			break;
+		case RIGHT:
+			bX += 1.0;
+			bY += 0.0;
+			break;
+		case LEFT:
+			bX -= 1.0;
+			bY -= 0.0;
+			break;	
 		}
 		
 		b.moveTo(bX, bY);
@@ -54,21 +70,31 @@ public class Game {
 		if(b.isBoarder(parent.getSize().getWidth(), parent.getSize().getHeight())) {
 			switch(b.getDirection()) {
 			case UPLEFT:
-				b.setDirection(Ball.Direction.DOWNLEFT);
-				break;
-			case UPRIGHT:
 				b.setDirection(Ball.Direction.DOWNRIGHT);
 				break;
+			case UPRIGHT:
+				b.setDirection(Ball.Direction.DOWNLEFT);
+				break;
 			case DOWNLEFT:
-				b.setDirection(Ball.Direction.UPLEFT);
+				b.setDirection(Ball.Direction.UPRIGHT);
 				break;
 			case DOWNRIGHT:
-				b.setDirection(Ball.Direction.UPRIGHT);
+				b.setDirection(Ball.Direction.UPLEFT);
+				break;
+			case LEFT:
+				b.setDirection(Ball.Direction.RIGHT);
+				break;
+
+			case RIGHT:
+				b.setDirection(Ball.Direction.LEFT);
 				break;
 			}
 		}
 	}
+
 	
+
+
 	public Set<Ball> getBall() {
 		return theCircles;
 	}

@@ -7,7 +7,7 @@ public class Ball extends Ellipse2D.Double {
 	private double yPos = 200;
 	private double radius = 50;
 	
-	private Direction direction = Direction.UPRIGHT;
+	private Direction direction = Direction.UPLEFT;
 	
 	public Direction getDirection() {
 		return direction;
@@ -18,7 +18,7 @@ public class Ball extends Ellipse2D.Double {
 	}
 
 	public static enum Direction {
-		UPLEFT, UPRIGHT, DOWNLEFT, DOWNRIGHT;
+		UPLEFT, UPRIGHT, DOWNLEFT, DOWNRIGHT, LEFT, RIGHT;
 	}
 	
 	public Ball() {
