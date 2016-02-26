@@ -54,17 +54,48 @@ public class Game {
 		if(b.isBoarder(parent.getSize().getWidth(), parent.getSize().getHeight())) {
 			switch(b.getDirection()) {
 			case UPLEFT:
-				b.setDirection(Ball.Direction.DOWNLEFT);
-				break;
+				if (b.getX()==0 && b.getY()==0){
+					b.setDirection(Ball.Direction.DOWNRIGHT);
+					break;
+				}
+				else if (b.getX()==0 && b.getY()!=0){
+					b.setDirection(Ball.Direction.UPRIGHT);
+					break;
+				}
+				else if (b.getY()==0 && b.getX()!=0){
+					b.setDirection(Ball.Direction.DOWNLEFT);
+					break;
+				}
 			case UPRIGHT:
-				b.setDirection(Ball.Direction.DOWNRIGHT);
-				break;
+				if (b.getY()==0 && b.getX()+b.getRadius()==parent.getSize().getWidth()){
+					b.setDirection(Ball.Direction.DOWNLEFT);
+					break;
+				}
+				else if (b.getY()==0){
+					b.setDirection(Ball.Direction.DOWNRIGHT);
+					break;
+				}
+				else {
+					b.setDirection(Ball.Direction.UPLEFT);
+					break;
+				}
 			case DOWNLEFT:
-				b.setDirection(Ball.Direction.UPLEFT);
-				break;
+				if (b.getX()==0){
+					b.setDirection(Ball.Direction.DOWNRIGHT);
+					break;}
+				else {
+					b.setDirection(Ball.Direction.UPLEFT);
+					break;
+				}
 			case DOWNRIGHT:
-				b.setDirection(Ball.Direction.UPRIGHT);
-				break;
+				if (b.getX() + b.getRadius() == parent.getSize().getWidth()){
+					b.setDirection(Ball.Direction.DOWNLEFT);
+					break;
+				}
+				else if (b.getY() + b.getRadius() == parent.getSize().getHeight()){
+					b.setDirection(Ball.Direction.UPRIGHT);
+					break;
+				}
 			}
 		}
 	}

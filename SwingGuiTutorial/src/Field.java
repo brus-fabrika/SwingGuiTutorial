@@ -17,12 +17,9 @@ public class Field extends JPanel {
 		super();
 		setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
 		
-//		game.addBall(new Ball(100, 100, 20));
-//		game.addBall(new Ball(200, 200, 20));
-		
-		Ball ball = new Ball(200, 250, 50);
-		
-		game.addBall(ball);
+		game.addBall(new Ball(100, 100, 20));
+		game.addBall(new Ball(150, 150, 35));
+		game.addBall(new Ball(50, 50, 100));
 		
 	}
 	
@@ -48,7 +45,7 @@ public class Field extends JPanel {
 			public void run() {
 				game.step();
 			}
-		}, 1000, 100);
+		}, 1000, 2);
 		
 	}
 }

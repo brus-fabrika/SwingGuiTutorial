@@ -7,6 +7,10 @@ public class Ball extends Ellipse2D.Double {
 	private double yPos = 200;
 	private double radius = 50;
 	
+	public double getRadius(){
+		return radius;
+	}
+	
 	private Direction direction = Direction.UPRIGHT;
 	
 	public Direction getDirection() {
