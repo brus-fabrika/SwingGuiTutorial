@@ -40,9 +40,17 @@ public class Ball extends Ellipse2D.Double {
 		
 		setFrame(this.xPos, this.yPos, radius, radius);
 	}
-
-	public boolean isBoarder(double width, double height) {
-		if(xPos == 0 || xPos + radius == width || yPos == 0 || yPos + radius == height) {
+	public double getRadius(){
+		return this.radius;
+	}
+	public boolean isBoarderX(double width, double height) {
+		if(xPos == 0 || xPos + radius == width) {
+			return true;
+		}
+		return false;
+	}
+	public boolean isBoarderY(double width, double height) {
+		if(yPos == 0 || yPos + radius == height) {
 			return true;
 		}
 		return false;

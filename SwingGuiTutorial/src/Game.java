@@ -51,7 +51,55 @@ public class Game {
 	}
 	
 	private void checkCollision(Ball b) {
-		if(b.isBoarder(parent.getSize().getWidth(), parent.getSize().getHeight())) {
+		if(b.isBoarderY(parent.getSize().getWidth(), parent.getSize().getHeight())) {
+			switch(b.getDirection()) {
+			case UPLEFT:
+				b.setDirection(Ball.Direction.DOWNLEFT);
+				break;
+			case UPRIGHT:
+				b.setDirection(Ball.Direction.DOWNRIGHT);
+				break;
+			case DOWNLEFT:
+				b.setDirection(Ball.Direction.UPLEFT);
+				break;
+			case DOWNRIGHT:
+				b.setDirection(Ball.Direction.UPRIGHT);
+				break;
+			}
+		}
+		else if(b.isBoarderX(parent.getSize().getWidth(), parent.getSize().getHeight())) {
+			switch(b.getDirection()) {
+			case UPLEFT:
+				b.setDirection(Ball.Direction.UPRIGHT);
+				break;
+			case UPRIGHT:
+				b.setDirection(Ball.Direction.UPLEFT);
+				break;
+			case DOWNLEFT:
+				b.setDirection(Ball.Direction.DOWNRIGHT);
+				break;
+			case DOWNRIGHT:
+				b.setDirection(Ball.Direction.DOWNLEFT);
+				break;
+			}
+		}
+		else if(isTouchx(b)) {
+			switch(b.getDirection()) {
+			case UPLEFT:
+				b.setDirection(Ball.Direction.UPRIGHT);
+				break;
+			case UPRIGHT:
+				b.setDirection(Ball.Direction.UPLEFT);
+				break;
+			case DOWNLEFT:
+				b.setDirection(Ball.Direction.DOWNRIGHT);
+				break;
+			case DOWNRIGHT:
+				b.setDirection(Ball.Direction.DOWNLEFT);
+				break;
+			}
+		}
+		else if(isTouchy(b)) {
 			switch(b.getDirection()) {
 			case UPLEFT:
 				b.setDirection(Ball.Direction.DOWNLEFT);
@@ -76,6 +124,38 @@ public class Game {
 	public void addBall(Ball ball) {
 		theCircles.add(ball);
 		
+	}
+	
+	public boolean isTouchx(Ball b){
+		boolean touch = false;
+		for(Ball c: theCircles) {
+			double r = (b.getRadius()+c.getRadius())/2;
+			if (c != b){
+				if ((Math.abs(b.getCenterX() - c.getCenterX()) <= r) & (Math.abs(b.getCenterY()- c.getCenterY())) <= r){
+					if (Math.abs(b.getCenterX() - c.getCenterX()) >= Math.abs(b.getCenterY()- c.getCenterY())){
+						touch = true;
+					}
+					
+				}
+			}
+		}
+		return touch;
+	}
+	
+	public boolean isTouchy(Ball b){
+		boolean touch = false;
+		for(Ball c: theCircles) {
+			double r = (b.getRadius()+c.getRadius())/2;
+			if (c != b){
+				if ((Math.abs(b.getCenterX() - c.getCenterX()) <= r) & (Math.abs(b.getCenterY()- c.getCenterY())) <= r){
+					if (Math.abs(b.getCenterX() - c.getCenterX()) <= Math.abs(b.getCenterY()- c.getCenterY())){
+						touch = true;
+					}
+					
+				}
+			}
+		}
+		return touch;
 	}
 	
 }
