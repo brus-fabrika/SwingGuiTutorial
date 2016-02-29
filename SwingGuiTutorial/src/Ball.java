@@ -1,4 +1,5 @@
 import java.awt.geom.Ellipse2D;
+import java.util.Random;
 
 
 public class Ball extends Ellipse2D.Double {
@@ -7,9 +8,34 @@ public class Ball extends Ellipse2D.Double {
 	private double yPos = 200;
 	private double radius = 50;
 	
-	private Direction direction = Direction.UPRIGHT;
+	
+	private Direction direction = Direction.UPLEFT;
+	
+	public Direction rndDir() {
+		
+		Random rand = new Random();
+		
+		int n = rand.nextInt(4);
+		
+		switch(n){
+			case 0:
+				setDirection(Direction.UPRIGHT);
+				break;
+			case 1:
+				setDirection(Direction.UPLEFT);
+				break;
+			case 2:
+				setDirection(Direction.DOWNLEFT);
+				break;
+			case 3:
+				setDirection(Direction.DOWNRIGHT);
+				break;
+		}
+		return direction;
+	}
 	
 	public Direction getDirection() {
+		
 		return direction;
 	}
 
@@ -23,6 +49,7 @@ public class Ball extends Ellipse2D.Double {
 	
 	public Ball() {
 		super();
+		 rndDir();
 		setFrame(xPos, yPos, radius, radius);
 	}
 	
@@ -31,6 +58,7 @@ public class Ball extends Ellipse2D.Double {
 		this.xPos = x;
 		this.yPos = y;
 		this.radius = r;
+		rndDir();
 		setFrame(this.xPos, this.yPos, this.radius, this.radius);
 	}
 	
@@ -42,9 +70,30 @@ public class Ball extends Ellipse2D.Double {
 	}
 
 	public boolean isBoarder(double width, double height) {
-		if(xPos == 0 || xPos + radius == width || yPos == 0 || yPos + radius == height) {
+		/*if(this.xPos == 0 || this.xPos + this.radius == width || this.yPos == 0 || this.yPos + this.radius == height) {
 			return true;
-		}
-		return false;
+		}else return false;*/
+		if (xPos == 0 || yPos == 0) {
+			return true;
+		}else if (xPos == 0 || yPos + radius == height) {
+			return true;
+		}else if (xPos + radius == width || yPos == 0) {
+			return true;
+		}else if (xPos + radius == width || yPos + radius == height) {
+			return true;
+		}else return false;
+	}
+	
+
+	public double getRadius() {
+		return this.radius;
+	}
+	
+	public double getXpos() {
+		return this.xPos;
+	}
+	
+	public double getYpos() {
+		return this.yPos;
 	}
 }
