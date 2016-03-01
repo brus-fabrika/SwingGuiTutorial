@@ -7,7 +7,11 @@ public class Ball extends Ellipse2D.Double {
 	private double yPos = 200;
 	private double radius = 50;
 	
-	private Direction direction = Direction.UPRIGHT;
+	private Direction direction = Direction.DOWNLEFT;
+	
+	
+	
+	
 	
 	public Direction getDirection() {
 		return direction;
@@ -34,6 +38,9 @@ public class Ball extends Ellipse2D.Double {
 		setFrame(this.xPos, this.yPos, this.radius, this.radius);
 	}
 	
+	
+
+
 	public void moveTo(double x, double y) {
 		this.xPos = x;
 		this.yPos = y;
@@ -41,10 +48,28 @@ public class Ball extends Ellipse2D.Double {
 		setFrame(this.xPos, this.yPos, radius, radius);
 	}
 
-	public boolean isBoarder(double width, double height) {
-		if(xPos == 0 || xPos + radius == width || yPos == 0 || yPos + radius == height) {
+	public boolean isBoarderX(double width, double height) {
+	
+	
+		if(xPos == 0 || xPos + radius == width) {
 			return true;
+	
 		}
+	
 		return false;
 	}
+	
+	
+	public boolean isBoarderY(double width, double height) {
+		
+		if(yPos == 0 || yPos + radius == height){
+			return true;
+			}
+		return false;
+		}
+
+	public double getRadius() {
+		return this.radius;
+	}
 }
+
