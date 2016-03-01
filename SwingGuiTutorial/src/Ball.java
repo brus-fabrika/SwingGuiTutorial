@@ -43,6 +43,15 @@ public class Ball extends Ellipse2D.Double {
 	public double getRadius(){
 		return this.radius;
 	}
+	
+	public double getCenterPosX(){
+		return this.xPos + this.radius/2;
+	}
+	
+	public double getCenterPosY(){
+		return this.yPos + this.radius/2;
+	}
+	
 	public boolean isBoarderX(double width, double height) {
 		if(xPos == 0 || xPos + radius == width) {
 			return true;
