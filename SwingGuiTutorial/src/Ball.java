@@ -47,4 +47,7 @@ public class Ball extends Ellipse2D.Double {
 		}
 		return false;
 	}
+public double getRadius(){
+	return this.radius;
+}
 }
