@@ -1,4 +1,10 @@
+import java.awt.Dimension;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 public class MainApp {
@@ -25,15 +31,17 @@ public class MainApp {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		
 		frame.setTitle("Flying balls");
-		frame.setSize(500, 500);
+		frame.setSize(300, 400);
 		frame.setLocation(100, 100);
-//		
+		
 		Field f = new Field();
-//		
+		
 		frame.add(f);
 		
 		frame.setVisible(true);
 		
+		
 		f.startMoving();
 	}
+	
 }

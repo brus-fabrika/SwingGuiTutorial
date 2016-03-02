@@ -7,6 +7,10 @@ public class Ball extends Ellipse2D.Double {
 	private double yPos = 200;
 	private double radius = 50;
 	
+	private int directionX = 1;
+	private int directionY = 1;
+	
+	
 	public double getRadius(){
 		return radius;
 	}
@@ -20,7 +24,52 @@ public class Ball extends Ellipse2D.Double {
 	public void setDirection(Direction direction) {
 		this.direction = direction;
 	}
-
+	public void setDirection(int number) {
+		if (number ==0) {
+			this.direction = Direction.UPLEFT;
+			this.directionX = -1;
+			this.directionY = -1;
+		}
+		else if (number ==1) {
+			this.direction = Direction.UPRIGHT;
+			this.directionX = 1;
+			this.directionY = -1;
+		}
+		else if (number ==2) {
+			this.direction = Direction.DOWNLEFT;
+			this.directionX = -1;
+			this.directionY = 1;
+		}
+		else if (number ==3) {
+			this.direction = Direction.DOWNRIGHT;
+			this.directionX = 1;
+			this.directionY = 1;
+		}
+		
+	}
+	public void setDirection(int x, int y) {
+		if (x == -1 && y == -1) {
+			this.direction = Direction.UPLEFT;
+			this.directionX = -1;
+			this.directionY = -1;
+		}
+		else if (x == 1 && y == -1) {
+			this.direction = Direction.UPRIGHT;
+			this.directionX = 1;
+			this.directionY = -1;
+		}
+		else if (x == 1 && y == 1) {
+			this.direction = Direction.DOWNLEFT;
+			this.directionX = -1;
+			this.directionY = 1;
+			}
+		else if (x == 1 && y == 1) {
+			this.direction = Direction.DOWNRIGHT;
+			this.directionX = 1;
+			this.directionY = 1;
+		}
+	}
+	
 	public static enum Direction {
 		UPLEFT, UPRIGHT, DOWNLEFT, DOWNRIGHT;
 	}
@@ -50,5 +99,21 @@ public class Ball extends Ellipse2D.Double {
 			return true;
 		}
 		return false;
+	}
+
+	public int getDirectionX() {
+		return directionX;
+	}
+
+	public void setDirectionX(int directionX) {
+		this.directionX = directionX;
+	}
+
+	public int getDirectionY() {
+		return directionY;
+	}
+
+	public void setDirectionY(int directionY) {
+		this.directionY = directionY;
 	}
 }
