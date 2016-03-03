@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 public class Game {
 
-	private JPanel parent;
+	JPanel parent;
 	
 	Set<Ball> theCircles = new HashSet<>();
 	Set<Rectangle> theRectangular = new HashSet<>();	
@@ -104,19 +104,7 @@ public class Game {
 //					System.out.println("X0 :" + x0 + ", Y0 : " + y0);
 //					System.out.println(b.getDirection());
 //					System.out.println(x.getDirection());
-				
-				if(b.getX() == 0 || b.getX() + b.getRadius() == parent.getSize().getWidth() || 
-					b.getY() == 0 || b.getY() + b.getRadius()== parent.getSize().getHeight()){
-					b.setDirection(-b.getDirectionX(), -b.getDirectionY());
-//					x.setDirection(-x.getDirectionX(), -x.getDirectionY());
-//					System.out.println("Столкновение со стеной шар В");	
-					}
-				if(b.getX() == 0 || b.getX() + b.getRadius() == parent.getSize().getWidth() || 
-					x.getY() == 0 || x.getY() + x.getRadius()== parent.getSize().getHeight()){
-//					b.setDirection(-b.getDirectionX(), -b.getDirectionY());
-					x.setDirection(-x.getDirectionX(), -x.getDirectionY());
-//					System.out.println("Столкновение со стеной шар Х");	
-					}
+					
 				if (x0 < y0){
 					if (b.getDirection()!=x.getDirection()){
 							b.setDirection(-b.getDirectionX(), b.getDirectionY());
@@ -166,7 +154,6 @@ public class Game {
 				else if (b.getX()==0 && b.getY()==0){
 					b.setDirection(Ball.Direction.DOWNRIGHT);
 				}
-//				System.out.println("Столкнулись со стеной");
 				break;
 				
 			case UPRIGHT:
@@ -179,7 +166,6 @@ public class Game {
 				else if (b.getY()==0 && b.getX()+b.getRadius()==valueBorderX){
 					b.setDirection(Ball.Direction.DOWNLEFT);
 				}
-//				System.out.println("Столкнулись со стеной");
 				break;
 				
 			case DOWNLEFT:
@@ -192,7 +178,6 @@ public class Game {
 				else if (b.getX()==0 && b.getY()+b.getRadius() == valueBorderY){
 					b.setDirection(Ball.Direction.UPRIGHT);
 				}
-//				System.out.println("Столкнулись со стеной");
 				break;
 
 			case DOWNRIGHT:
@@ -205,11 +190,26 @@ public class Game {
 				if (b.getX() + b.getRadius() == valueBorderX && b.getY() + b.getRadius() == valueBorderY){
 					b.setDirection(Ball.Direction.UPLEFT);
 				}
-//				System.out.println("Столкнулись со стеной");
 				break;
 
 			}
 		}
+	}
+	
+	public boolean isBallCollistion(int xx, int yy, int radius) {
+		for (Ball x : theCircles){
+			
+				double x0 = Math.abs(xx - x.getX());
+				double y0 = Math.abs(yy - x.getY());
+				
+				double r0 = Math.round((radius+x.getRadius())/2)+1;
+				
+				if ((x0*x0) + (y0*y0) <= r0*r0){
+					x.setDirection(-x.getDirectionX(), -x.getDirectionY());
+					return true;
+				}
+		}
+		return false;
 	}
 	
 	public Set<Ball> getBall() {

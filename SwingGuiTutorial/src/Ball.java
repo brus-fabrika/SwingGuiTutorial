@@ -15,7 +15,11 @@ public class Ball extends Ellipse2D.Double {
 		return radius;
 	}
 	
-	private Direction direction = Direction.UPRIGHT;
+	public static int getBallRadius(){
+		return 20+(int)(Math.random() *50);
+	}
+	
+	private Direction direction = changeDirection();
 	
 	public Direction getDirection() {
 		return direction;
@@ -69,6 +73,16 @@ public class Ball extends Ellipse2D.Double {
 			this.directionY = 1;
 		}
 	}
+	public static Direction changeDirection() { 
+		int numb = ((int)(Math.random() * 3));
+		Direction dir = null;
+		if (numb == 0) dir = Direction.UPLEFT;
+		if (numb == 1) dir = Direction.UPRIGHT;
+		if (numb == 2) dir = Direction.DOWNLEFT;
+		if (numb == 3) dir = Direction.DOWNRIGHT;
+		
+		return dir;
+	}
 	
 	public static enum Direction {
 		UPLEFT, UPRIGHT, DOWNLEFT, DOWNRIGHT;
@@ -100,7 +114,10 @@ public class Ball extends Ellipse2D.Double {
 		}
 		return false;
 	}
-
+	
+	
+	
+	
 	public int getDirectionX() {
 		return directionX;
 	}

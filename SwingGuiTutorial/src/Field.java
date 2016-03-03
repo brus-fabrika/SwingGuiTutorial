@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.*;
@@ -8,34 +7,25 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 
 public class Field extends JPanel {
 		
 	private Game game = new Game(this);
-//	
-//	Field.addMouseListener(new CustomListener());
-//	
 	
 	public Field() {
 		super();
 		setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
 		
 		addMouseListener(new CustomListener());
-//		game.addBall(new Ball(100, 100, 20));
-//		game.addBall(new Ball(150, 150, 30));
-//		game.addBall(new Ball(50, 50, 50));
 		
 		game.addRectangle(new Rectangle(100, 100, 50, 70));
 		
 	}
 	
-	public int getBallRadius(){
-		int r = 20+(int)(Math.random() *50);
-		return r;
-	}
+	
+	
 	
 	
 	@Override
@@ -68,9 +58,21 @@ public class Field extends JPanel {
 	public class CustomListener implements MouseListener {
 
         public void mouseClicked(MouseEvent e) {
-        	int radius = getBallRadius();
-        	game.addBall(new Ball(e.getX(), e.getY(), radius));
-        	System.out.println("xx : " + e.getX() + ", yy :" + e.getY() + ", Radius :" + radius);
+        	int radius = Ball.getBallRadius();
+        	int halfRadius = radius/2;
+        	int xx = e.getX(), yy = e.getY();
+        	double width = game.parent.getSize().getWidth();
+        	double height = game.parent.getSize().getHeight();
+
+        	if((xx < 0 || xx > width -radius || yy < 0 || yy > height - radius) 
+        		|| game.isBallCollistion(xx,yy,radius)) {
+        		System.out.println("невозможно нарисовать");
+        				}
+        		else{
+        		game.addBall(new Ball(xx-halfRadius, yy-halfRadius, radius));
+            	System.out.println("xx : " + xx + ", yy :" + yy + ", Radius :" + radius);
+    		}
+      
         }
 
         public void mouseEntered(MouseEvent e) {        }
