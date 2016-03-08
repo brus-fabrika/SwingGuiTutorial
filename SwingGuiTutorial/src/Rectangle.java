@@ -1,4 +1,6 @@
 import java.awt.geom.Rectangle2D;
+import java.util.Random;
+
  
  
   public class Rectangle extends Rectangle2D.Double{
@@ -18,17 +20,39 @@ import java.awt.geom.Rectangle2D;
   	}
   
   	public static enum Direction {
-  		UPLEFT, UPRIGHT, DOWNLEFT, DOWNRIGHT, LEFT, RIGHT;
+  		UPLEFT, UPRIGHT, DOWNLEFT, DOWNRIGHT;
   	}
-  	
+public Direction rndoDir() {
+		
+		Random rnd = new Random();
+		
+		int n = rnd.nextInt(4);
+		
+		switch(n){
+			case 0:
+				setDirection(Direction.UPRIGHT);
+				break;
+			case 1:
+				setDirection(Direction.UPLEFT);
+				break;
+			case 2:
+				setDirection(Direction.DOWNLEFT);
+				break;
+			case 3:
+				setDirection(Direction.DOWNRIGHT);
+				break;
+		}
+		return direction;}
   	public Rectangle () {
   		super();
+  		rndoDir();
   		setRect(xPos, yPos, w, h);
   		setFrame(xPos, yPos, w, h);
   	}
   	
   	public Rectangle (int x, int y, int w, int h) {
-  		super();
+  		super();rndoDir();
+  		
   		this.xPos = x;
   		this.yPos = y;
   		this.w = w;

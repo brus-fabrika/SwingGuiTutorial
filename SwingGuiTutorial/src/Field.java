@@ -9,7 +9,7 @@ import java.util.TimerTask;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-
+import java.util.Random;
 
 public class Field extends JPanel {
 	
@@ -24,6 +24,13 @@ public class Field extends JPanel {
 			
 			System.out.println(e.getX()+" "+ e.getY());	
 			System.out.println(e.getPoint());
+			Random rand = new Random();
+			rand.nextInt(4);
+			for (Ball f:game.theCircles){
+				
+			}
+				
+				
 			game.addBall(new Ball((e.getX()-(50/2)), (e.getY()-(50/2)), 50));
        		}
 
@@ -58,8 +65,10 @@ public class Field extends JPanel {
 		game.addBall(new Ball(200, 200, 20));
 		
 		Ball ball = new Ball(200, 250, 50);
-	
 		Rectangle square = new Rectangle(150,150, 40,80);
+		
+		game.addRectangle(new Rectangle(100,100,30,60));
+		
 		game.addBall(ball);
 		game.addRectangle(square);
 	}

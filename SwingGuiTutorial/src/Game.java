@@ -52,15 +52,7 @@ public class Game {
 			bX += 1.0;
 			bY += 1.0;
 			break;
-		case RIGHT:
-			bX += 1.0;
-			bY += 0.0;
-			break;
-		case LEFT:
-			bX -= 1.0;
-			bY -= 0.0;
-			break;	
-		}
+				}
 		
 		r.moveTo(bX, bY);
 	}
@@ -89,15 +81,7 @@ public class Game {
 			bX += 1.0;
 			bY += 1.0;
 			break;
-		case RIGHT:
-			bX += 1.0;
-			bY += 0.0;
-			break;
-		case LEFT:
-			bX -= 1.0;
-			bY -= 0.0;
-			break;	
-		}
+				}
 		
 		b.moveTo(bX, bY);
 	}
@@ -105,51 +89,84 @@ public class Game {
 		if(r.isBoarder(parent.getSize().getWidth(), parent.getSize().getHeight())) {
 			switch(r.getDirection()) {
 			case UPLEFT:
-				r.setDirection(Rectangle.Direction.UPRIGHT);
-				break;
+				if (r.getX() == 0){
+					r.setDirection(Rectangle.Direction.UPRIGHT);
+				}else 
+					r.setDirection(Rectangle.Direction.DOWNLEFT);
+								break;
 			case UPRIGHT:
-				r.setDirection(Rectangle.Direction.DOWNLEFT);
+				if (r.getX() + r.getWidth()  == parent.getSize().getWidth()&&r.getY()+r.getHeight()==parent.getSize().getHeight()
+				&&r.getX()==0&& r.getY()==0){
+					r.setDirection(Rectangle.Direction.DOWNRIGHT);
+				}else
+					r.setDirection(Rectangle.Direction.DOWNLEFT);
 				break;
 			case DOWNLEFT:
-				r.setDirection(Rectangle.Direction.UPLEFT);
+				if (r.getX() == 0){
+					r.setDirection(Rectangle.Direction.DOWNRIGHT);
+				}else
+					r.setDirection(Rectangle.Direction.UPLEFT);
 				break;
 			case DOWNRIGHT:
-				r.setDirection(Rectangle.Direction.UPRIGHT);
-				break;
-			case LEFT:
-				r.setDirection(Rectangle.Direction.RIGHT);
-				break;
-
-			case RIGHT:
-				r.setDirection(Rectangle.Direction.LEFT);
+				if (r.getY() + r.getHeight() == parent.getSize().getHeight()){
+					r.setDirection(Rectangle.Direction.UPRIGHT);
+				}else
+					r.setDirection(Rectangle.Direction.DOWNLEFT);
 				break;
 			}
+			
 		}
-	}
+			else if(Touch(r)){
+				switch(r.getDirection()) {
+				case UPLEFT:
+					r.setDirection(Rectangle.Direction.DOWNRIGHT);
+					break;
+				case UPRIGHT:
+					r.setDirection(Rectangle.Direction.DOWNLEFT);
+					break;
+				case DOWNLEFT:
+					r.setDirection(Rectangle.Direction.UPRIGHT);
+					break;
+				case DOWNRIGHT:
+					r.setDirection(Rectangle.Direction.UPLEFT);
+					break;
+							}
+				
+				
+			}
+		}
+	
 	private void checkCollision(Ball b) {
 		if(b.isBoarder(parent.getSize().getWidth(), parent.getSize().getHeight())) {
 			switch(b.getDirection()) {
 			case UPLEFT:
-				b.setDirection(Ball.Direction.DOWNRIGHT);
-				break;
+				if (b.getX() == 0){
+					b.setDirection(Ball.Direction.UPRIGHT);
+				}else 
+					b.setDirection(Ball.Direction.DOWNLEFT);
+								break;
 			case UPRIGHT:
-				b.setDirection(Ball.Direction.DOWNLEFT);
+				if (b.getY() == 0){
+					b.setDirection(Ball.Direction.DOWNRIGHT);
+				}else
+				b.setDirection(Ball.Direction.UPLEFT);
 				break;
 			case DOWNLEFT:
+				if (b.getX() == 0){
+					b.setDirection(Ball.Direction.DOWNRIGHT);
+				}else
 				b.setDirection(Ball.Direction.UPLEFT);
 				break;
 			case DOWNRIGHT:
-				b.setDirection(Ball.Direction.UPRIGHT);
-				break;
-			case LEFT:
-				b.setDirection(Ball.Direction.RIGHT);
-				break;
-
-			case RIGHT:
-				b.setDirection(Ball.Direction.LEFT);
+				if (b.getY() + b.getRadius() == parent.getSize().getHeight()){
+					b.setDirection(Ball.Direction.UPRIGHT);
+				}else
+				b.setDirection(Ball.Direction.DOWNLEFT);
 				break;
 			}
 		}
+
+	
 		else if(Touch(b)){
 			switch(b.getDirection()) {
 			case UPLEFT:
@@ -164,20 +181,12 @@ public class Game {
 			case DOWNRIGHT:
 				b.setDirection(Ball.Direction.UPLEFT);
 				break;
-			case LEFT:
-				b.setDirection(Ball.Direction.RIGHT);
-				break;
-
-			case RIGHT:
-				b.setDirection(Ball.Direction.LEFT);
-				break;
-			}
+						}
+			
 					
 			}
 			}
-
-	
-	
+		
 	public boolean Touch(Ball b){
 		boolean touch = false;
 		for(Ball c: theCircles) {
@@ -193,6 +202,27 @@ public class Game {
 				}
 			return touch;
 	}
+	public boolean Touch(Rectangle r){
+		boolean touch = false;
+		for(Rectangle x: theSquares) {
+			if (r != x){
+					if (
+							r.getX()<(x.getX()+x.getWidth())&
+							x.getX()<(r.getX()+r.getWidth())&
+							r.getY()<(x.getY()+x.getHeight())&
+							x.getY()<(r.getY()+r.getHeight())
+							
+						){
+						if (Math.abs(r.getCenterX() - x.getCenterX()) <= (Math.abs(r.getCenterY()- x.getCenterY()))){
+							touch = true;
+					}
+				}
+			}
+			
+		}
+		return touch;
+	}
+	
 		public Set<Ball> getBall() {
 		return theCircles;
 	}
@@ -208,5 +238,7 @@ public class Game {
 			public Set<Rectangle> getRectangle() {
 				return theSquares;
 			}
+			
+		
+				    }
 
-			}
