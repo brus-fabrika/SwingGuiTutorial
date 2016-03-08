@@ -53,13 +53,13 @@ public class Ball extends Ellipse2D.Double {
 	}
 	
 	public boolean isBoarderX(double width, double height) {
-		if(xPos == 0 || xPos + radius == width) {
+		if(xPos <= 0 || xPos + radius >= width) {
 			return true;
 		}
 		return false;
 	}
 	public boolean isBoarderY(double width, double height) {
-		if(yPos == 0 || yPos + radius == height) {
+		if(yPos <= 0 || yPos + radius >= height) {
 			return true;
 		}
 		return false;

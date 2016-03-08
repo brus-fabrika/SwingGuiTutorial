@@ -23,13 +23,13 @@ public class MainApp {
 		JFrame frame = new JFrame();
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		
+		
 		frame.setTitle("Flying balls");
 		frame.setSize(500, 500);
 		frame.setLocation(100, 100);
-//		
+		
 		Field f = new Field();
-//		
+		
 		frame.add(f);
 		
 		frame.setVisible(true);
